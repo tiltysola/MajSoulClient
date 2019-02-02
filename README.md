@@ -1,28 +1,31 @@
-# majsoulclient
+# 雀魂客户端（非官方版） [![Build Status](https://travis-ci.org/Illyasviels/MajSoulClient.svg?branch=master)](https://travis-ci.org/Illyasviels/MajSoulClient)
 
-> A client for MajSoul
+> 雀魂的非官方版客户端，使用Electron编写，跨平台编译。可运行在Window, Linux和Mac OS系统之上。
 
-#### Build Setup
+![MajSoul](https://github.com/illyasviels/majsoulclient/static/majsoul.png)
+
+### 使用方法
+
+#### 环境要求
+
+1. Node.js 环境
+
+2. Windows, Linux, Mac OS 系统之一
+
+#### 构建程序
 
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:9080
+# 在 localhost:9080 上进行开发者构建版本
 npm run dev
 
-# build electron application for production
+# 构建版本
 npm run build
-
-# run unit & end-to-end tests
-npm test
-
-
-# lint all JS/Vue component files in `src/`
-npm run lint
 
 ```
 
 ---
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[8fae476](https://github.com/SimulatedGREG/electron-vue/tree/8fae4763e9d225d3691b627e83b9e09b56f6c935) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+该工程由 [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[8fae476](https://github.com/SimulatedGREG/electron-vue/tree/8fae4763e9d225d3691b627e83b9e09b56f6c935) 构建，使用了 using [vue-cli](https://github.com/vuejs/vue-cli) 。相关帮助文档您可前往 [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html) 查询。
