@@ -11,7 +11,7 @@ matrix:
       compiler: clang
 
 node_js:
-  - 6.4.1
+  - 10.15.1
 
 cache:
   directories:
@@ -31,7 +31,6 @@ addons:
       - xvfb
 
 install:
-  - nvm install 6.4.1
   - npm install electron-builder@next
   - npm install
   - export DISPLAY=':99.0'
@@ -43,4 +42,5 @@ before_script:
   - sleep 3
 
 script:
+  - npm rebuild node-sass
   - npm run build
