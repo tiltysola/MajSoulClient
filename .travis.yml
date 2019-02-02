@@ -1,54 +1,41 @@
-# Commented sections below can be used to run tests on the CI server
-# https://simulatedgreg.gitbooks.io/electron-vue/content/en/testing.html#on-the-subject-of-ci-testing
-on:
-  condition: "$TRAVIS_COMMIT_MESSAGE =~ ^trigger ci$"
-osx_image: xcode8.3
-sudo: required
 dist: trusty
-language: c
-matrix:
-  include:
-  - os: osx
-  - os: linux
-  - os: windows
-    env: CC=clang CXX=clang++ npm_config_clang=1
-    compiler: clang
-cache:
-  directories:
-  - node_modules
-  - "$HOME/.electron"
-  - "$HOME/.cache"
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - google-chrome
     packages:
-    - graphicsmagick
-    - libgnome-keyring-dev
-    - icnsutils
-    - xz-utils
-    - rpm
-    - bsdtar
-    #- xvfb
-before_install:
-# - mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v1.2.1/git-lfs-$([
-#   "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-1.2.1.tar.gz
-#   | tar -xz -C /tmp/git-lfs --strip-components 1 && /tmp/git-lfs/git-lfs pull
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install git-lfs; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils; fi
-install:
-#- export DISPLAY=':99.0'
-#- Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-- nvm install 8
-- curl -o- -L https://yarnpkg.com/install.sh | bash
-- source ~/.bashrc
-# - npm install -g xvfb-maybe
-- yarn
-script:
-#- xvfb-maybe node_modules/.bin/karma start test/unit/karma.conf.js
-- yarn run build
-branches:
-  only:
-  - master
+      - xvfb
+      - google-chrome-stable
+language: node_js
+node_js:
+  - "7"
+env:
+    - EMBER_VERSION=default
+    - EMBER_VERSION=release
+    - EMBER_VERSION=beta
+    - EMBER_VERSION=canary
+matrix:
+  include:
+    - os: osx
+    - os: linux
+    - os: windows
+  fast_finish: true
+  allow_failures:
+    - env: EMBER_VERSION=release
+    - env: EMBER_VERSION=beta
+    - env: EMBER_VERSION=canary
 
-# if: tag IS present
+before_install:
+    # setting the path for phantom.js 2.0.0
+    - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
+    # starting a GUI to run tests, per https://docs.travis-ci.com/user/gui-and-headless-browsers/#using-xvfb-to-run-tests-that-require-a-gui
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - "npm config set spin false"
+    - "npm install -g npm@^2"
+install:
+    - export DISPLAY=':99.0'
+    - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+    - npm install
+script:
+    - npm run build
