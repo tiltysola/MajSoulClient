@@ -2,7 +2,7 @@
 
 > 雀魂的非官方版客户端，使用Electron编写，跨平台编译。可运行在Window, Linux和Mac OS系统之上。
 
-![MajSoul](https://github.com/illyasviels/majsoulclient/static/majsoul.png)
+![MajSoul](https://github.com/Illyasviels/MajSoulClient/blob/master/static/majsoul.png)
 
 ### 使用方法
 
